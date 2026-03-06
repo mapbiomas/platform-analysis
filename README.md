@@ -1,4 +1,4 @@
-# platform-analysis
+# Analysis implemented on-the-fly in the MapBiomas Plattaform
 
 [**2. Class Age (Target Class Persistence)**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_1_age.js)
 
