@@ -36,7 +36,8 @@
 
 *What it shows:* It maps the temporal footprint of a class. If you are looking at "Fire" or "Deforestation," this layer tells you exactly when the most recent event happened in each specific location.
 
-[**7. Accumulated Class (Spatial/Temporal Footprint)**]
-Description: This layer represents the cumulative spatial extent of the targetClass across the entire time series (1985–2024). It identifies every pixel that was classified as the target category at least once during the study period.
+[**7. Accumulated Class (Spatial/Temporal Footprint)**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_7_accumulated.js)
 
-What it shows: It maps the total footprint or "historical reach" of a specific land use. For example, if the target class is "Pasture," this layer shows all areas that have functioned as pasture at some point, even if they have since been abandoned or converted to another use. It is a powerful tool for analyzing the maximum expansion or the total area ever affected by a specific land cover type.
+*Description:* This layer represents the cumulative spatial extent of the targetClass across the entire time series (1985–2024). It identifies every pixel that was classified as the target category at least once during the study period.
+
+*What it shows:* It maps the total footprint or "historical reach" of a specific land use. For example, if the target class is "Pasture," this layer shows all areas that have functioned as pasture at some point, even if they have since been abandoned or converted to another use. It is a powerful tool for analyzing the maximum expansion or the total area ever affected by a specific land cover type.
