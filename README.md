@@ -1,6 +1,6 @@
 # platform-analysis
 
-[**2. Class Age (Target Class Persistence)**] ([https://github.com/mapbiomas/platform-analysis/blob/main/analysis_1_age.js])
+[**2. Class Age (Target Class Persistence)**] [https://github.com/mapbiomas/platform-analysis/blob/main/analysis_1_age.js]
 Description: Calculates the number of consecutive years that the pixel has belonged to the targetClass (e.g., Pasture), counting backwards from the last year of the series.
 
 What it shows: This is crucial for identifying "old" vs. "recent" areas. For example, if the class is Pasture, a high value represents consolidated pasture, while a low value represents a recent conversion.
