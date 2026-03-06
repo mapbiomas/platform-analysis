@@ -1,0 +1,65 @@
+/**
+ * Script to analyze Land Use and Land Cover (LULC) dynamics using MapBiomas data.
+ * Calculates metrics such as age, frequency, transitions, and stability for a target class.
+ */
+
+// Define the MapBiomas asset path
+var asset = 'projects/mapbiomas-public/assets/brazil/lulc/collection10_1/mapbiomas_brazil_collection10_1_coverage_v1';
+
+// Target class to be analyzed (e.g., 15 for Pasture in MapBiomas)
+var targetClass = 15;
+
+// Prefix used in the image band names
+var bandPrefix = 'classification_';
+
+// List of years available in the collection
+var years = [
+    1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992,
+    1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
+    2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008,
+    2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016,
+    2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024
+];
+
+// Load the multi-band image (each band represents a year)
+var image = ee.Image(asset);
+
+// Import MapBiomas official color modules
+var Palettes = require('users/mapbiomas/modules:Palettes.js');
+var paletteLulc = Palettes.get('classification9');
+
+
+/**
+ * Gets the class value of the first occurrence in the time series (useful for cumulative analysis).
+ */
+var getAccumulatedClass = function (image, targetClass, years, bandPrefix) {
+    var classMask = ee.Image(image).eq(targetClass);
+
+    var bands = ee.List(years).map(function (year) {
+        year = ee.Number(year).format('%.0f');
+        return ee.String(bandPrefix).cat(year);
+    });
+
+    var accumulated = image
+        .select(bands)
+        .mask(classMask)
+        .reduce(ee.Reducer.firstNonNull());
+
+    return accumulated;
+};
+
+// --- Visualization Section ---
+
+// 1. Original LULC for the latest year
+Map.addLayer(image, {
+    bands: ['classification_2023'],
+    min: 0, max: 69,
+    palette: paletteLulc
+}, 'LULC 2023', false);
+
+// 8. Accumulated/First occurrence
+var accumulated = getAccumulatedClass(image, targetClass, years, bandPrefix).selfMask();
+Map.addLayer(accumulated, {
+    min: 0, max: 69,
+    palette: paletteLulc
+}, 'Class ' + String(targetClass) + ' Accumulated');
