@@ -30,10 +30,11 @@
 
 *What it shows:* These are the "remnants" or "climax" areas. It is vital for identifying primary forests or long-term consolidated agricultural lands that have never been cleared or changed.
 
-[**6. Class Last Year (Most Recent Occurrence)**]
-Description: Identifies the latest calendar year in which the targetClass was detected in that pixel.
+[**6. Class Last Year (Most Recent Occurrence)**] (https://github.com/mapbiomas/platform-analysis/blob/main/analysis_6_last_year.js)
 
-What it shows: It maps the temporal footprint of a class. If you are looking at "Fire" or "Deforestation," this layer tells you exactly when the most recent event happened in each specific location.
+*Description:* Identifies the latest calendar year in which the targetClass was detected in that pixel.
+
+*What it shows:* It maps the temporal footprint of a class. If you are looking at "Fire" or "Deforestation," this layer tells you exactly when the most recent event happened in each specific location.
 
 [**7. Accumulated Class (Spatial/Temporal Footprint)**]
 Description: This layer represents the cumulative spatial extent of the targetClass across the entire time series (1985–2024). It identifies every pixel that was classified as the target category at least once during the study period.
