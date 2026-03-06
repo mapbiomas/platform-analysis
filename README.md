@@ -24,10 +24,11 @@
 
 *What it shows:* This measures landscape dynamism. High values indicate high instability or "flipping" between classes. For example, a pixel that changes from Forest to Pasture and then back to Forest would count as 2 changes.
 
-[**5. Stable Classes**]
-Description: Filters the map to show only the pixels that have remained the same class without a single change from 1985 to 2024.
+[**5. Stable Classes**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_5_stable.js)
 
-What it shows: These are the "remnants" or "climax" areas. It is vital for identifying primary forests or long-term consolidated agricultural lands that have never been cleared or changed.
+*Description:* Filters the map to show only the pixels that have remained the same class without a single change from 1985 to 2024.
+
+*What it shows:* These are the "remnants" or "climax" areas. It is vital for identifying primary forests or long-term consolidated agricultural lands that have never been cleared or changed.
 
 [**6. Class Last Year (Most Recent Occurrence)**]
 Description: Identifies the latest calendar year in which the targetClass was detected in that pixel.
