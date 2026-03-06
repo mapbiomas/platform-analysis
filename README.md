@@ -6,10 +6,10 @@
 
 *What it shows:* This is crucial for identifying "old" vs. "recent" areas. For example, if the class is Pasture, a high value represents consolidated pasture, while a low value represents a recent conversion.
 
-[**3. Class Frequency**]
-Description: A temporal summary that counts the total number of years a pixel was classified as the targetClass throughout the entire time series (1985–2024).
+[**3. Class Frequency**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_2_frequency.js)
+*Description:* A temporal summary that counts the total number of years a pixel was classified as the targetClass throughout the entire time series (1985–2024).
 
-What it shows: Unlike "Age," this does not require consecutive years. It reveals the recurrence of a class. A pixel might have a low "Age" but high "Frequency" if the class disappears and reappears over time (common in crop rotation or shifting cultivation).
+*What it shows:* Unlike "Age," this does not require consecutive years. It reveals the recurrence of a class. A pixel might have a low "Age" but high "Frequency" if the class disappears and reappears over time (common in crop rotation or shifting cultivation).
 
 [**4. Number of Distinct Classes**]
 Description: This metric identifies how many different types of land use have occupied that specific pixel over the 40-year period.
