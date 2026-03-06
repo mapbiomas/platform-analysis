@@ -30,7 +30,7 @@
 
 *What it shows:* These are the "remnants" or "climax" areas. It is vital for identifying primary forests or long-term consolidated agricultural lands that have never been cleared or changed.
 
-[**6. Class Last Year (Most Recent Occurrence)**] (https://github.com/mapbiomas/platform-analysis/blob/main/analysis_6_last_year.js)
+[**6. Class Last Year (Most Recent Occurrence)**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_6_last_year.js)
 
 *Description:* Identifies the latest calendar year in which the targetClass was detected in that pixel.
 
