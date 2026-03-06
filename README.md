@@ -1,5 +1,7 @@
 # Analysis implemented on-the-fly in the MapBiomas Plattaform
 
+The JavaScript scripts provided in this repository are specifically designed for use within the Google Earth Engine (GEE) Code Editor. To utilize these tools, simply copy the code from the desired .js file and paste it directly into the GEE web interface. These scripts leverage the MapBiomas API and Earth Engine's distributed computing power to perform advanced temporal analysis of Land Use and Land Cover (LULC) dynamics, allowing for seamless replication of the environmental metrics described in this documentation.
+
 [**1. Class Age (Target Class Persistence)**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_1_age.js)
 
 *Description:* Calculates the number of consecutive years that the pixel has belonged to the targetClass (e.g., Pasture), counting backwards from the last year of the series.
