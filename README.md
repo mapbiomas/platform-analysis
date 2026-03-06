@@ -2,43 +2,43 @@
 
 The JavaScript scripts provided in this repository are specifically designed for use within the Google Earth Engine (GEE) Code Editor. To utilize these tools, simply copy the code from the desired .js file and paste it directly into the GEE web interface. These scripts leverage the MapBiomas API and Earth Engine's distributed computing power to perform advanced temporal analysis of Land Use and Land Cover (LULC) dynamics, allowing for seamless replication of the environmental metrics described in this documentation.
 
-[**1. Class Age (Target Class Persistence)**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_1_age.js)
+[**1. Class Age (Target Class Persistence)**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_1_age.js)
 
 *Description:* Calculates the number of consecutive years that the pixel has belonged to the targetClass (e.g., Pasture), counting backwards from the last year of the series.
 
 *What it shows:* This is crucial for identifying "old" vs. "recent" areas. For example, if the class is Pasture, a high value represents consolidated pasture, while a low value represents a recent conversion.
 
-[**2. Class Frequency**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_2_frequency.js)
+[**2. Class Frequency**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_2_frequency.js)
 
 *Description:* A temporal summary that counts the total number of years a pixel was classified as the targetClass throughout the entire time series (1985–2024).
 
 *What it shows:* Unlike "Age," this does not require consecutive years. It reveals the recurrence of a class. A pixel might have a low "Age" but high "Frequency" if the class disappears and reappears over time (common in crop rotation or shifting cultivation).
 
-[**3. Number of Distinct Classes**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_3_number_of_classes.js)
+[**3. Number of Distinct Classes**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_3_number_of_classes.js)
 
 *Description:* This metric identifies how many different types of land use have occupied that specific pixel over the 40-year period.
 
 *What it shows:* It is a proxy for land use diversity. A pixel with a value of "1" has only ever been one thing. A pixel with "5" has transitioned between five different categories (e.g., Forest -> Pasture -> Secondary Vegetation -> Agriculture -> Urban).
 
-[**4. Number of Changes (Transitions)**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_4_number_of_changes.js)
+[**4. Number of Changes (Transitions)**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_4_number_of_changes.js)
 
 *Description:* Calculates the total number of land cover transitions (runs) that occurred in the pixel.
 
 *What it shows:* This measures landscape dynamism. High values indicate high instability or "flipping" between classes. For example, a pixel that changes from Forest to Pasture and then back to Forest would count as 2 changes.
 
-[**5. Stable Classes**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_5_stable.js)
+[**5. Stable Classes**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_5_stable.js)
 
 *Description:* Filters the map to show only the pixels that have remained the same class without a single change from 1985 to 2024.
 
 *What it shows:* These are the "remnants" or "climax" areas. It is vital for identifying primary forests or long-term consolidated agricultural lands that have never been cleared or changed.
 
-[**6. Class Last Year (Most Recent Occurrence)**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_6_last_year.js)
+[**6. Class Last Year (Most Recent Occurrence)**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_6_last_year.js)
 
 *Description:* Identifies the latest calendar year in which the targetClass was detected in that pixel.
 
 *What it shows:* It maps the temporal footprint of a class. If you are looking at "Fire" or "Deforestation," this layer tells you exactly when the most recent event happened in each specific location.
 
-[**7. Accumulated Class (Spatial/Temporal Footprint)**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_7_accumulated.js)
+[**7. Accumulated Class (Spatial/Temporal Footprint)**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_7_accumulated.js)
 
 *Description:* This layer represents the cumulative spatial extent of the targetClass across the entire time series (1985–2024). It identifies every pixel that was classified as the target category at least once during the study period.
 
