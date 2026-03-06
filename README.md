@@ -7,19 +7,22 @@
 *What it shows:* This is crucial for identifying "old" vs. "recent" areas. For example, if the class is Pasture, a high value represents consolidated pasture, while a low value represents a recent conversion.
 
 [**2. Class Frequency**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_2_frequency.js)
+
 *Description:* A temporal summary that counts the total number of years a pixel was classified as the targetClass throughout the entire time series (1985–2024).
 
 *What it shows:* Unlike "Age," this does not require consecutive years. It reveals the recurrence of a class. A pixel might have a low "Age" but high "Frequency" if the class disappears and reappears over time (common in crop rotation or shifting cultivation).
 
 [**3. Number of Distinct Classes**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_3_number_of_classes.js)
+
 *Description:* This metric identifies how many different types of land use have occupied that specific pixel over the 40-year period.
 
 *What it shows:* It is a proxy for land use diversity. A pixel with a value of "1" has only ever been one thing. A pixel with "5" has transitioned between five different categories (e.g., Forest -> Pasture -> Secondary Vegetation -> Agriculture -> Urban).
 
-[**4. Number of Changes (Transitions)**]
-Description: Calculates the total number of land cover transitions (runs) that occurred in the pixel.
+[**4. Number of Changes (Transitions)**](https://github.com/mapbiomas/platform-analysis/blob/main/analysis_4_number_of_changes.js)
 
-What it shows: This measures landscape dynamism. High values indicate high instability or "flipping" between classes. For example, a pixel that changes from Forest to Pasture and then back to Forest would count as 2 changes.
+*Description:* Calculates the total number of land cover transitions (runs) that occurred in the pixel.
+
+*What it shows:* This measures landscape dynamism. High values indicate high instability or "flipping" between classes. For example, a pixel that changes from Forest to Pasture and then back to Forest would count as 2 changes.
 
 [**5. Stable Classes**]
 Description: Filters the map to show only the pixels that have remained the same class without a single change from 1985 to 2024.
