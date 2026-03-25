@@ -43,3 +43,9 @@ The JavaScript scripts provided in this repository are specifically designed for
 *Description:* This layer represents the cumulative spatial extent of the targetClass across the entire time series (1985–2024). It identifies every pixel that was classified as the target category at least once during the study period.
 
 *What it shows:* It maps the total footprint or "historical reach" of a specific land use. For example, if the target class is "Pasture," this layer shows all areas that have functioned as pasture at some point, even if they have since been abandoned or converted to another use. It is a powerful tool for analyzing the maximum expansion or the total area ever affected by a specific land cover type.
+
+[**8. Transtions **](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_8_transitions.js)
+
+*Description:* This script performs a temporal transition analysis using MapBiomas Collection 10.1 data to identify specific land-use changes between 2008 and 2024 through pixel-based map algebra.
+
+*What it shows:* Direct Conversions: Forest loss to Soy: Highlights areas where Forest (Class 3) was converted to Soy (Class 39), resulting in the unique transition code 339. Forest Regeneration: Identifies and groups recovery patterns where either Pasture (15) or Mosaic Agriculture (21) transitioned back to Forest (03).
