@@ -44,7 +44,7 @@ The JavaScript scripts provided in this repository are specifically designed for
 
 *What it shows:* It maps the total footprint or "historical reach" of a specific land use. For example, if the target class is "Pasture," this layer shows all areas that have functioned as pasture at some point, even if they have since been abandoned or converted to another use. It is a powerful tool for analyzing the maximum expansion or the total area ever affected by a specific land cover type.
 
-[**8. Transtions **](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_8_transitions.js)
+[**8. Transtions**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_8_transitions.js)
 
 *Description:* This script performs a temporal transition analysis using MapBiomas Collection 10.1 data to identify specific land-use changes between 2008 and 2024 through pixel-based map algebra.
 
