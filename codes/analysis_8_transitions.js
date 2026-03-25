@@ -29,12 +29,12 @@ Map.addLayer(integration, {
 }, 'LULC 2024', false);
 
 /**
- * Identify specific transition: Forest (3) to Pasture (15).
- * Resulting code: (3 * 100) + 15 = 315.
+ * Identify specific transition: Forest (3) to Soy (39).
+ * Resulting code: (3 * 100) + 39 = 339.
  * .selfMask() is used to make pixels that don't match the criteria transparent.
  */
-var forest_to_pasture = transitions.eq(315).selfMask();
-Map.addLayer(forest_to_pasture, {palette: '#ad0000'}, 'forest_'+start_year+' to pasture_'+ end_year);
+var forest_to_soy = transitions.eq(339).selfMask();
+Map.addLayer(forest_to_soy, {palette: '#ad0000'}, 'forest_'+start_year+' to soy_'+ end_year);
 
 /**
  * Identify multiple transitions to a single class (Regeneration):
