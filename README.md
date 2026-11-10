@@ -19,6 +19,7 @@ Google Earth Engine scripts that reproduce the temporal analyses of land use and
 | 6 | [Class Last Year](https://github.com/mapbiomas/platform-analysis/wiki/Class-Last-Year) | [`analysis_6_last_year.js`](codes/analysis_6_last_year.js) |
 | 7 | [Accumulated Class](https://github.com/mapbiomas/platform-analysis/wiki/Accumulated-Class) | [`analysis_7_accumulated.js`](codes/analysis_7_accumulated.js) |
 | 8 | [Transitions](https://github.com/mapbiomas/platform-analysis/wiki/Transitions) | [`analysis_8_transitions.js`](codes/analysis_8_transitions.js) |
+| 9 | [Class First Year](https://github.com/mapbiomas/platform-analysis/wiki/Class-First-Year) | [`analysis_9_first_year.js`](codes/analysis_9_first_year.js) |
 
 ## Usage
 

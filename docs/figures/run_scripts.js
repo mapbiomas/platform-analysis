@@ -121,6 +121,7 @@ class Img {
 const Reducer = {
     sum: () => ({ name: 'sum', fn: (v) => (v.length ? v.reduce((a, b) => a + b, 0) : null) }),
     max: () => ({ name: 'max', fn: (v) => (v.length ? Math.max(...v) : null) }),
+    min: () => ({ name: 'min', fn: (v) => (v.length ? Math.min(...v) : null) }),
     countDistinctNonNull: () => ({ name: 'count', fn: (v) => new Set(v).size }),
     countRuns: () => ({ name: 'count', fn: (v) => v.filter((x, i) => i === 0 || x !== v[i - 1]).length }),
     firstNonNull: () => ({ name: 'first', fn: (v) => (v.length ? v[0] : null) }),

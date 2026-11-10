@@ -154,6 +154,15 @@ def _cap_last(p, v):
     return f"{name(px[v + 1])} from {v + 1}"
 
 
+def _cap_first(p, v):
+    px = PIXELS[p][1]
+    if not v:
+        return "never pasture"
+    if v == YEARS[0]:
+        return "pasture from the start"
+    return f"{name(px[v - 1])} until {v - 1}"
+
+
 ANALYSES = [
     {
         "id": "analysis_1_age", "num": 1, "title": "Class <em>age</em>", "fn": "getClassAge",
@@ -302,6 +311,24 @@ ANALYSES = [
         ],
         "note": "Only the two years matter: pixel D's pasture years (2017–2018) do not change its code. Pixel A "
                 "(1515) and B (303) are in no layer.",
+    },
+    {
+        "id": "analysis_9_first_year", "num": 9, "title": "Class <em>first year</em>", "fn": "getClassFirstYear",
+        "layers": {"v": f"Class {TARGET} First Year"},
+        "lead": "The earliest year in which the pixel was in the target class. With the last year (analysis 6), it "
+                "frames the period in which the class was present.",
+        "unit": "",
+        "expected": {"A": 1993, "B": None, "C": 1991, "D": 2017},
+        "keep": lambda p, y: PIXELS[p][1][y] == TARGET,
+        "marks": lambda p: target_years(PIXELS[p][1])[:1],
+        "caption": _cap_first,
+        "steps": [
+            ("Year where in class", f"eq({TARGET}).multiply(year).selfMask()",
+             "each band becomes its year in pasture years; the other years are masked, so their 0 cannot be the minimum"),
+            ("Take the minimum", "reduce(ee.Reducer.min())", "the earliest pasture year; pixels never in the class stay masked"),
+        ],
+        "note": "Pixel C entered pasture in 1991 and pixel D only in 2017. With the last year (analysis 6), pixel C "
+                "was pasture from 1991 to 2010; pixel A, from 1993 to 2024 with breaks.",
     },
 ]
 
