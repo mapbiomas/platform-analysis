@@ -50,14 +50,14 @@ var getNumberOfClasses = function (image, years, bandPrefix) {
 
 // --- Visualization Section ---
 
-// 1. Original LULC for the latest year
+// Original LULC for the latest year
 Map.addLayer(image, {
     bands: ['classification_2024'],
     min: 0, max: 69,
     palette: paletteLulc
 }, 'LULC 2024', false);
 
-// 4. Number of distinct classes
+// Number of distinct classes
 var numberOfClasses = getNumberOfClasses(image, years, bandPrefix).selfMask();
 Map.addLayer(numberOfClasses, {
     min: 1, max: 6,

@@ -1,6 +1,9 @@
 /**
- * Script to analyze Land Use and Land Cover (LULC) dynamics using MapBiomas data.
- * Calculates metrics such as age, frequency, transitions, and stability for a target class.
+  Description: Identifies the earliest year in which the pixel was classified
+  as the targetClass.
+
+  What it shows: When a class first appeared in each location. Together with
+  the last year (analysis 7), it frames the period in which the class was present.
  */
 
 // Define the MapBiomas asset path
@@ -26,7 +29,7 @@ var image = ee.Image(asset);
 
 // Define a general spectral palette for continuous values
 var palette = [
-    "#fced79", "#f2eb0f","#f2b963", "#d99632","#d63422", "#5e0202"
+    "#fced79", "#f2eb0f", "#f2b963", "#d99632", "#d63422", "#5e0202"
 ];
 
 // Import MapBiomas official color modules
@@ -35,41 +38,42 @@ var paletteLulc = Palettes.get('classification9');
 
 
 /**
- * Identifies the most recent year a specific class was present in the pixel.
+ * Identifies the earliest year a specific class was present in the pixel.
  * @param {ee.Image} image - The multi-band LULC image.
  * @param {number} targetClass - The class value.
  * @param {Array} years - Array of years.
  * @param {string} bandPrefix - Prefix of the band names.
- * @returns {ee.Image} - Image with the maximum year value found.
+ * @returns {ee.Image} - Image with the minimum year value found.
  */
-var getClassLastYear = function (image, targetClass, years, bandPrefix) {
+var getClassFirstYear = function (image, targetClass, years, bandPrefix) {
     var image = ee.Image(image);
 
     var imageYears = years.map(
         function (year) {
             year = ee.Number(year);
             var bandName = ee.String(bandPrefix).cat(year.format('%.0f'));
-            var imageYear = image.select([bandName]).eq(ee.Image(targetClass)).multiply(year);
+            // selfMask: years outside the class are masked, otherwise their 0 would be the minimum
+            var imageYear = image.select([bandName]).eq(ee.Image(targetClass)).multiply(year).selfMask();
             return imageYear;
         }
     );
 
-    var lastYear = ee.Image(imageYears).reduce(ee.Reducer.max()).selfMask();
-    return lastYear;
+    var firstYear = ee.Image(imageYears).reduce(ee.Reducer.min());
+    return firstYear;
 };
 
 // --- Visualization Section ---
 
-// 1. Original LULC for the latest year
+// Original LULC for the latest year
 Map.addLayer(image, {
     bands: ['classification_2024'],
     min: 0, max: 69,
     palette: paletteLulc
 }, 'LULC 2024', false);
 
-// 7. Last occurrence year
-var lastYear = getClassLastYear(image, targetClass, years, bandPrefix).selfMask();
-Map.addLayer(lastYear, {
+// First occurrence year
+var firstYear = getClassFirstYear(image, targetClass, years, bandPrefix);
+Map.addLayer(firstYear, {
     min: 1985, max: 2024,
     palette: palette
-}, 'Class ' + String(targetClass) + ' Last Year');
+}, 'Class ' + String(targetClass) + ' First Year');

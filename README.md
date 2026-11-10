@@ -16,10 +16,10 @@ Google Earth Engine scripts that reproduce the temporal analyses of land use and
 | 3 | [Number of Distinct Classes](https://github.com/mapbiomas/platform-analysis/wiki/Number-of-Distinct-Classes) | [`analysis_3_number_of_classes.js`](codes/analysis_3_number_of_classes.js) |
 | 4 | [Number of Changes](https://github.com/mapbiomas/platform-analysis/wiki/Number-of-Changes) | [`analysis_4_number_of_changes.js`](codes/analysis_4_number_of_changes.js) |
 | 5 | [Stable Classes](https://github.com/mapbiomas/platform-analysis/wiki/Stable-Classes) | [`analysis_5_stable.js`](codes/analysis_5_stable.js) |
-| 6 | [Class Last Year](https://github.com/mapbiomas/platform-analysis/wiki/Class-Last-Year) | [`analysis_6_last_year.js`](codes/analysis_6_last_year.js) |
-| 7 | [Accumulated Class](https://github.com/mapbiomas/platform-analysis/wiki/Accumulated-Class) | [`analysis_7_accumulated.js`](codes/analysis_7_accumulated.js) |
-| 8 | [Transitions](https://github.com/mapbiomas/platform-analysis/wiki/Transitions) | [`analysis_8_transitions.js`](codes/analysis_8_transitions.js) |
-| 9 | [Class First Year](https://github.com/mapbiomas/platform-analysis/wiki/Class-First-Year) | [`analysis_9_first_year.js`](codes/analysis_9_first_year.js) |
+| 6 | [Class First Year](https://github.com/mapbiomas/platform-analysis/wiki/Class-First-Year) | [`analysis_6_first_year.js`](codes/analysis_6_first_year.js) |
+| 7 | [Class Last Year](https://github.com/mapbiomas/platform-analysis/wiki/Class-Last-Year) | [`analysis_7_last_year.js`](codes/analysis_7_last_year.js) |
+| 8 | [Accumulated Class](https://github.com/mapbiomas/platform-analysis/wiki/Accumulated-Class) | [`analysis_8_accumulated.js`](codes/analysis_8_accumulated.js) |
+| 9 | [Transitions](https://github.com/mapbiomas/platform-analysis/wiki/Transitions) | [`analysis_9_transitions.js`](codes/analysis_9_transitions.js) |
 
 ## Usage
 

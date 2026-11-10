@@ -50,14 +50,14 @@ var getAccumulatedClass = function (image, targetClass, years, bandPrefix) {
 
 // --- Visualization Section ---
 
-// 1. Original LULC for the latest year
+// Original LULC for the latest year
 Map.addLayer(image, {
     bands: ['classification_2024'],
     min: 0, max: 69,
     palette: paletteLulc
 }, 'LULC 2024', false);
 
-// 8. Accumulated/First occurrence
+// Accumulated/First occurrence
 var accumulated = getAccumulatedClass(image, targetClass, years, bandPrefix).selfMask();
 Map.addLayer(accumulated, {
     min: 0, max: 69,

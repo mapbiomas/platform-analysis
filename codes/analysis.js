@@ -247,12 +247,12 @@ var getAccumulatedClass = function (image, targetClass, years, bandPrefix) {
 
 // Exibição da imagem original
 Map.addLayer(image, {
-    bands: ['classification_2023'],
+    bands: ['classification_2024'],
     min: 0,
     max: 69,
     palette: paletteLulc,
     format: 'png'
-}, 'LULC 2023');
+}, 'LULC 2024');
 
 // Chamada da função para calcular a idade da classe alvo
 var ages = getClassAge(image, targetClass, years, bandPrefix).selfMask();
@@ -315,7 +315,7 @@ var lastYear = getClassLastYear(image, targetClass, years, bandPrefix).selfMask(
 // Exibição da imagem com o último ano da classe alvo
 Map.addLayer(lastYear, {
     min: 1985,
-    max: 2023,
+    max: 2024,
     palette: palette,
     format: 'png'
 }, 'Class ' + String(targetClass) + ' Last Year');

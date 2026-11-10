@@ -39,7 +39,8 @@ RUNNER = os.path.join(HERE, "run_scripts.js")
 
 YEARS = list(range(1985, 2025))
 TARGET = 15
-T_START, T_END = 2008, 2024  # analysis_8_transitions.js
+T_START, T_END = 2008, 2024  # analysis_9_transitions.js
+TRANSITIONS = "analysis_9_transitions"
 
 # ---------------------------------------------------------------------------
 # Colors
@@ -253,7 +254,25 @@ ANALYSES = [
         "note": "Only pixel B is stable. Pixel D was forest for 32 years, but two pasture years are enough to leave it out.",
     },
     {
-        "id": "analysis_6_last_year", "num": 6, "title": "Class <em>last year</em>", "fn": "getClassLastYear",
+        "id": "analysis_6_first_year", "num": 6, "title": "Class <em>first year</em>", "fn": "getClassFirstYear",
+        "layers": {"v": f"Class {TARGET} First Year"},
+        "lead": "The earliest year in which the pixel was in the target class. With the last year (analysis 7), it "
+                "frames the period in which the class was present.",
+        "unit": "",
+        "expected": {"A": 1993, "B": None, "C": 1991, "D": 2017},
+        "keep": lambda p, y: PIXELS[p][1][y] == TARGET,
+        "marks": lambda p: target_years(PIXELS[p][1])[:1],
+        "caption": _cap_first,
+        "steps": [
+            ("Year where in class", f"eq({TARGET}).multiply(year).selfMask()",
+             "each band becomes its year in pasture years; the other years are masked, so their 0 cannot be the minimum"),
+            ("Take the minimum", "reduce(ee.Reducer.min())", "the earliest pasture year; pixels never in the class stay masked"),
+        ],
+        "note": "Pixel C entered pasture in 1991 and pixel D only in 2017. With the last year (analysis 7), pixel C "
+                "was pasture from 1991 to 2010; pixel A, from 1993 to 2024 with breaks.",
+    },
+    {
+        "id": "analysis_7_last_year", "num": 7, "title": "Class <em>last year</em>", "fn": "getClassLastYear",
         "layers": {"v": f"Class {TARGET} Last Year"},
         "lead": "The most recent year in which the pixel was in the target class. It shows when a class was last "
                 "seen where it no longer is.",
@@ -271,7 +290,7 @@ ANALYSES = [
                 "last year of the series.",
     },
     {
-        "id": "analysis_7_accumulated", "num": 7, "title": "<em>Accumulated</em> class", "fn": "getAccumulatedClass",
+        "id": "analysis_8_accumulated", "num": 8, "title": "<em>Accumulated</em> class", "fn": "getAccumulatedClass",
         "layers": {"v": f"Class {TARGET} Accumulated"},
         "lead": "Every pixel that was in the target class in at least one year: the total footprint of the class over "
                 "the series, including areas that have since changed.",
@@ -287,7 +306,7 @@ ANALYSES = [
         "note": "Pixel D enters the footprint with two pasture years; in the last year it is soybean.",
     },
     {
-        "id": "analysis_8_transitions", "num": 8, "title": "<em>Transitions</em>",
+        "id": "analysis_9_transitions", "num": 9, "title": "<em>Transitions</em>",
         "fn": f"{T_START} × 100 + {T_END}",
         "layers": {"soy": f"forest_{T_START} to soy_{T_END}",
                    "regen": f"pasture_or_mosaic_{T_START} to forest_{T_END}"},
@@ -311,25 +330,7 @@ ANALYSES = [
         ],
         "note": "Only the two years matter: pixel D's pasture years (2017–2018) do not change its code. Pixel A "
                 "(1515) and B (303) are in no layer.",
-    },
-    {
-        "id": "analysis_9_first_year", "num": 9, "title": "Class <em>first year</em>", "fn": "getClassFirstYear",
-        "layers": {"v": f"Class {TARGET} First Year"},
-        "lead": "The earliest year in which the pixel was in the target class. With the last year (analysis 6), it "
-                "frames the period in which the class was present.",
-        "unit": "",
-        "expected": {"A": 1993, "B": None, "C": 1991, "D": 2017},
-        "keep": lambda p, y: PIXELS[p][1][y] == TARGET,
-        "marks": lambda p: target_years(PIXELS[p][1])[:1],
-        "caption": _cap_first,
-        "steps": [
-            ("Year where in class", f"eq({TARGET}).multiply(year).selfMask()",
-             "each band becomes its year in pasture years; the other years are masked, so their 0 cannot be the minimum"),
-            ("Take the minimum", "reduce(ee.Reducer.min())", "the earliest pasture year; pixels never in the class stay masked"),
-        ],
-        "note": "Pixel C entered pasture in 1991 and pixel D only in 2017. With the last year (analysis 6), pixel C "
-                "was pasture from 1991 to 2010; pixel A, from 1993 to 2024 with breaks.",
-    },
+    }
 ]
 
 
@@ -363,7 +364,7 @@ def evaluate():
     missing = {f[:-3] for f in raw} - {a["id"] for a in ANALYSES}
     assert not missing, f"scripts without a figure entry: {sorted(missing)}"
 
-    tr = next(a for a in ANALYSES if a["id"] == "analysis_8_transitions")
+    tr = next(a for a in ANALYSES if a["id"] == TRANSITIONS)
     def cap_tr(p, v):
         for k in tr["layers"]:
             if tr["layer_values"][k][p]:
@@ -561,7 +562,7 @@ def build_analysis(a, theme):
     res = []
     for r, p in enumerate(PIXELS):
         v = a["values"][p]
-        masked = v is None or (a["id"] == "analysis_8_transitions" and a["caption"](p, v) == "in no layer")
+        masked = v is None or (a["id"] == TRANSITIONS and a["caption"](p, v) == "in no layer")
         shown = "—" if v is None else v
         unit = "" if v is None or not a["unit"] or a["unit"] in ("class", "code") else a["unit"]
         if v == 1:

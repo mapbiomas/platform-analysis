@@ -59,14 +59,14 @@ var getClassFrequency = function (image, targetClass, years, bandPrefix) {
 
 // --- Visualization Section ---
 
-// 1. Original LULC for the latest year
+// Original LULC for the latest year
 Map.addLayer(image, {
     bands: ['classification_2024'],
     min: 0, max: 69,
     palette: paletteLulc
 }, 'LULC 2024', false);
 
-// 3. Class Frequency
+// Class Frequency
 var frequencies = getClassFrequency(image, targetClass, years, bandPrefix).selfMask();
 Map.addLayer(frequencies, {
     min: 0, max: years.length,
