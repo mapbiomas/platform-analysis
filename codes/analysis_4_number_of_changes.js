@@ -55,10 +55,10 @@ var getNumberOfChanges = function (image, years, bandPrefix) {
 
 // Original LULC for the latest year
 Map.addLayer(image, {
-    bands: ['classification_2023'],
+    bands: ['classification_2024'],
     min: 0, max: 69,
     palette: paletteLulc
-}, 'LULC 2023', false);
+}, 'LULC 2024', false);
 
 // Number of transitions
 var numberOfChanges = getNumberOfChanges(image, years, bandPrefix).selfMask();

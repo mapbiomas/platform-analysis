@@ -74,10 +74,10 @@ var getStableClasses = function (image, years, bandPrefix) {
 
 // Original LULC for the latest year
 Map.addLayer(image, {
-    bands: ['classification_2023'],
+    bands: ['classification_2024'],
     min: 0, max: 69,
     palette: paletteLulc
-}, 'LULC 2023', false);
+}, 'LULC 2024', false);
 
 // Stable areas
 var stable = getStableClasses(image, years, bandPrefix).selfMask();

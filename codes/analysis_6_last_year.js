@@ -26,7 +26,7 @@ var image = ee.Image(asset);
 
 // Define a general spectral palette for continuous values
 var palette = [
-    "#fced79", "#f2eb0f","#f2b963", "d99632","#d63422", "#5e0202"
+    "#fced79", "#f2eb0f","#f2b963", "#d99632","#d63422", "#5e0202"
 ];
 
 // Import MapBiomas official color modules
@@ -62,14 +62,14 @@ var getClassLastYear = function (image, targetClass, years, bandPrefix) {
 
 // 1. Original LULC for the latest year
 Map.addLayer(image, {
-    bands: ['classification_2023'],
+    bands: ['classification_2024'],
     min: 0, max: 69,
     palette: paletteLulc
-}, 'LULC 2023', false);
+}, 'LULC 2024', false);
 
 // 7. Last occurrence year
 var lastYear = getClassLastYear(image, targetClass, years, bandPrefix).selfMask();
 Map.addLayer(lastYear, {
-    min: 1985, max: 2023,
+    min: 1985, max: 2024,
     palette: palette
 }, 'Class ' + String(targetClass) + ' Last Year');
