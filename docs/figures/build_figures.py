@@ -39,8 +39,8 @@ RUNNER = os.path.join(HERE, "run_scripts.js")
 
 YEARS = list(range(1985, 2025))
 TARGET = 15
-T_START, T_END = 2008, 2024  # analysis_9_transitions.js
-TRANSITIONS = "analysis_9_transitions"
+T_START, T_END = 2008, 2024  # analysis_10_transitions.js
+TRANSITIONS = "analysis_10_transitions"
 
 # ---------------------------------------------------------------------------
 # Colors
@@ -162,6 +162,21 @@ def _cap_first(p, v):
     if v == YEARS[0]:
         return "pasture from the start"
     return f"{name(px[v - 1])} until {v - 1}"
+
+
+def _cap_since(p, v):
+    # 0 is a real value here (still in the class), so test for None, not falsiness
+    if v is None:
+        return "never pasture"
+    if v == 0:
+        return f"still pasture in {YEARS[-1]}"
+    return f"last pasture in {YEARS[-1] - v}"
+
+
+def _since_years(p):
+    """The last target year and the years after it: the span the analysis measures."""
+    ty = target_years(PIXELS[p][1])
+    return [y for y in YEARS if ty and y >= ty[-1]]
 
 
 ANALYSES = [
@@ -290,7 +305,27 @@ ANALYSES = [
                 "last year of the series.",
     },
     {
-        "id": "analysis_8_accumulated", "num": 8, "title": "<em>Accumulated</em> class", "fn": "getAccumulatedClass",
+        "id": "analysis_8_time_since_last", "num": 8, "title": "Time since the <em>last occurrence</em>",
+        "fn": "getTimeSinceLastOccurrence",
+        "layers": {"v": f"Class {TARGET} Years Since Last"},
+        "lead": f"Years between the last year in the target class and {YEARS[-1]}: the last year (analysis 7) as "
+                "elapsed time. 0 means the pixel is still in the class; pixels never in the class are transparent.",
+        "unit": "years",
+        "expected": {"A": 0, "B": None, "C": 14, "D": 6},
+        "keep": lambda p, y: y in _since_years(p),
+        "marks": lambda p: target_years(PIXELS[p][1])[-1:],
+        "caption": _cap_since,
+        "steps": [
+            ("Last year in class", "getClassLastYear(…)", "as in analysis 7: the latest pasture year, masked where never pasture"),
+            ("Subtract from the series end", "ee.Image(years[years.length - 1])<br>.subtract(lastYear)",
+             f"0 if still in the class in {YEARS[-1]}. No <code>selfMask()</code>, so 0 stays visible; the mask of "
+             "the last year carries over"),
+        ],
+        "note": "Pixel C left pasture 14 years ago and pixel D 6. Pixel A is still pasture: 0, shown on the map, "
+                "unlike pixel B, which was never pasture and is transparent.",
+    },
+    {
+        "id": "analysis_9_accumulated", "num": 9, "title": "<em>Accumulated</em> class", "fn": "getAccumulatedClass",
         "layers": {"v": f"Class {TARGET} Accumulated"},
         "lead": "Every pixel that was in the target class in at least one year: the total footprint of the class over "
                 "the series, including areas that have since changed.",
@@ -306,7 +341,7 @@ ANALYSES = [
         "note": "Pixel D enters the footprint with two pasture years; in the last year it is soybean.",
     },
     {
-        "id": "analysis_9_transitions", "num": 9, "title": "<em>Transitions</em>",
+        "id": "analysis_10_transitions", "num": 10, "title": "<em>Transitions</em>",
         "fn": f"{T_START} × 100 + {T_END}",
         "layers": {"soy": f"forest_{T_START} to soy_{T_END}",
                    "regen": f"pasture_or_mosaic_{T_START} to forest_{T_END}"},
