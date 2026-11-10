@@ -11,7 +11,7 @@ The figures below run each script on the same four example pixels:
   <img alt="Four example pixels, 40 years each: A, a rotation of forest, pasture, mosaic and soybean that ends in pasture; B, forest in every year; C, pasture from 1991 to 2010, then forest again; D, forest until 2016, pasture in 2017–2018 and soybean from 2019" src="docs/figures/overview-light.png">
 </picture>
 
-[**1. Class Age (Target Class Persistence)**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_1_age.js)
+**1. Class Age**
 
 *Description:* Counts the consecutive years the pixel has belonged to the `targetClass`, going back from the last year of the series (2024). Any year in another class resets the count to zero, so only pixels that are in the target class in 2024 have an age.
 
@@ -22,7 +22,7 @@ The figures below run each script on the same four example pixels:
   <img alt="Class age on the four example pixels: A 11 years, B, C and D masked" src="docs/figures/analysis_1_age-light.png">
 </picture>
 
-[**2. Class Frequency**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_2_frequency.js)
+**2. Class Frequency**
 
 *Description:* Counts the total number of years the pixel was classified as the `targetClass` throughout the time series (1985–2024), consecutive or not.
 
@@ -33,7 +33,7 @@ The figures below run each script on the same four example pixels:
   <img alt="Class frequency on the four example pixels: A 23, B masked, C 20, D 2" src="docs/figures/analysis_2_frequency-light.png">
 </picture>
 
-[**3. Number of Distinct Classes**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_3_number_of_classes.js)
+**3. Number of Distinct Classes**
 
 *Description:* Counts how many different classes have occupied the pixel over the 40 years. A class that appears in several separate periods counts once.
 
@@ -44,7 +44,7 @@ The figures below run each script on the same four example pixels:
   <img alt="Number of classes on the four example pixels: A 4, B 1, C 2, D 3" src="docs/figures/analysis_3_number_of_classes-light.png">
 </picture>
 
-[**4. Number of Changes (Transitions)**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_4_number_of_changes.js)
+**4. Number of Changes**
 
 *Description:* Counts how many times the class changed from one year to the next, as the number of runs (blocks of consecutive years with the same class) minus one. Pixels that never changed are masked.
 
@@ -55,7 +55,7 @@ The figures below run each script on the same four example pixels:
   <img alt="Number of changes on the four example pixels: A 5, B masked, C 2, D 2" src="docs/figures/analysis_4_number_of_changes-light.png">
 </picture>
 
-[**5. Stable Classes**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_5_stable.js)
+**5. Stable Classes**
 
 *Description:* Keeps only the pixels that had the same class in every year from 1985 to 2024, with that class as their value; every other pixel is masked.
 
@@ -66,7 +66,7 @@ The figures below run each script on the same four example pixels:
   <img alt="Stable classes on the four example pixels: only B, with class 3" src="docs/figures/analysis_5_stable-light.png">
 </picture>
 
-[**6. Class Last Year (Most Recent Occurrence)**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_6_last_year.js)
+**6. Class Last Year**
 
 *Description:* Returns the most recent year in which the pixel was classified as the `targetClass`.
 
@@ -77,7 +77,7 @@ The figures below run each script on the same four example pixels:
   <img alt="Class last year on the four example pixels: A 2024, B masked, C 2010, D 2018" src="docs/figures/analysis_6_last_year-light.png">
 </picture>
 
-[**7. Accumulated Class (Spatial/Temporal Footprint)**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_7_accumulated.js)
+**7. Accumulated Class**
 
 *Description:* Marks every pixel that was classified as the `targetClass` in at least one year of the series (1985–2024), with the target class as its value.
 
@@ -88,7 +88,7 @@ The figures below run each script on the same four example pixels:
   <img alt="Accumulated class on the four example pixels: A, C and D with class 15, B masked" src="docs/figures/analysis_7_accumulated-light.png">
 </picture>
 
-[**8. Transitions**](https://github.com/mapbiomas/platform-analysis/blob/main/codes/analysis_8_transitions.js)
+**8. Transitions**
 
 *Description:* Combines the class of 2008 and the class of 2024 in a single code by map algebra, `class_2008 × 100 + class_2024`: the first digits are the 2008 class and the last two the 2024 class. Each map layer then selects the codes of one transition of interest; other codes are transparent. Only the two years are compared: what happens in between does not change the code.
 
